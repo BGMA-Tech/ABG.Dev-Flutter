@@ -1,0 +1,16 @@
+{
+  "app": {
+    "logoTitle": "ABG"
+  },
+  "register": {
+    "email" : "Email",
+    "password": "Password",
+    "registerButton": "Register",
+    "username": "Username"
+  },
+  "login": {
+    "email" : "Email",
+    "password": "Password",
+    "loginButton": "Login"
+  }
+}
