@@ -1,6 +1,7 @@
 import 'package:abgdev_flutter/core/constants/navigation_constants.dart';
 import 'package:abgdev_flutter/feature/auth/login/view/login_view.dart';
 import 'package:abgdev_flutter/feature/auth/register/view/register.view.dart';
+import 'package:abgdev_flutter/feature/home/view/home_view.dart';
 import 'package:flutter/material.dart';
 
 class NavigationRoute {
@@ -14,6 +15,8 @@ class NavigationRoute {
         return normalNavigate(RegisterView());
       case NavigationConstants.login:
         return normalNavigate(LoginView());
+      case NavigationConstants.home:
+        return normalNavigate(const HomeView());
       default:
         return normalNavigate(const Scaffold());
     }

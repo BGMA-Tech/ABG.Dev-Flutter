@@ -54,7 +54,16 @@ class LoginView extends StatelessWidget with NavigationMixin {
   }
 
   Widget _loginButton(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state.hasError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.error ?? ''),
+            ),
+          );
+        }
+      },
       builder: (context, state) {
         return ElevatedButton(
           onPressed: () async {

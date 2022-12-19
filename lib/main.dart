@@ -1,4 +1,7 @@
-import 'package:abgdev_flutter/feature/auth/register/view/register.view.dart';
+import 'package:abgdev_flutter/core/init/cache/abstract/cache_service.dart';
+import 'package:abgdev_flutter/core/init/cache/mixin/cache_mixin.dart';
+import 'package:abgdev_flutter/feature/auth/login/view/login_view.dart';
+import 'package:abgdev_flutter/feature/home/view/home_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -14,14 +17,13 @@ Future<void> main() async {
       supportedLocales: const [Locale('en', 'US')],
       path: 'assets/translations',
       fallbackLocale: const Locale('en', 'US'),
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class MyApp extends StatelessWidget with CacheMixin {
+  MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationManager.instance.navigatorKey,
-      home: RegisterView(),
+      home: cacheService.getInt(CacheKeyEnum.userId) != null ? const HomeView() : LoginView(),
     );
   }
 }

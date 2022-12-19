@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:abgdev_flutter/core/constants/navigation_constants.dart';
+import 'package:abgdev_flutter/core/init/cache/abstract/cache_service.dart';
+import 'package:abgdev_flutter/core/init/cache/mixin/cache_mixin.dart';
 import 'package:abgdev_flutter/core/mixin/navigation_mixin.dart';
 import 'package:abgdev_flutter/feature/auth/service/abstract/auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +11,7 @@ import '../model/auth_request_model.dart';
 import '../model/auth_response_model.dart';
 import 'auth_state.dart';
 
-class AuthCubit extends Cubit<AuthState> with NavigationMixin {
+class AuthCubit extends Cubit<AuthState> with NavigationMixin, CacheMixin {
   AuthCubit(this.registerService) : super(const AuthState());
 
   final RegisterService registerService;
@@ -20,8 +22,8 @@ class AuthCubit extends Cubit<AuthState> with NavigationMixin {
     if (!(response?.success ?? false)) {
       return emit(state.copyWith(isLoading: false, hasError: true, error: response?.message));
     }
+    emit(state.copyWith(isLoading: false, data: response, hasError: false, error: ''));
     await navigateToPage(NavigationConstants.login);
-    emit(state.copyWith(isLoading: false, data: response));
   }
 
   Future<void> login(AuthRequestModel data) async {
@@ -31,7 +33,8 @@ class AuthCubit extends Cubit<AuthState> with NavigationMixin {
     if (!(response?.success ?? false)) {
       return emit(state.copyWith(isLoading: false, hasError: true, error: response?.message));
     }
-    emit(state.copyWith(isLoading: false, data: response));
-    await navigateToPage(NavigationConstants.login);
+    emit(state.copyWith(isLoading: false, data: response, hasError: false, error: ''));
+    cacheService.setInt(CacheKeyEnum.userId, response?.data?.id ?? 0);
+    await navigateToPageClear(NavigationConstants.home);
   }
 }

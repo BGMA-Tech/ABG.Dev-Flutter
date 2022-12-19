@@ -60,7 +60,16 @@ class RegisterView extends StatelessWidget with NavigationMixin {
   }
 
   Widget _registerButton() {
-    return BlocBuilder<AuthCubit, AuthState>(
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state.hasError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.error ?? ''),
+            ),
+          );
+        }
+      },
       builder: (context, state) {
         return state.isLoading
             ? const CircularProgressIndicator()
