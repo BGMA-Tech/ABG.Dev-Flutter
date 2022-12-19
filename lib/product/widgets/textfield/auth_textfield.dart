@@ -5,15 +5,15 @@ import 'package:kartal/kartal.dart';
 import '../../enums/auth_textfield_type_enum.dart';
 
 class AuthTextField extends StatelessWidget {
-  const AuthTextField({super.key, required this.onChange, required this.textFieldType});
+  const AuthTextField({super.key, required this.textFieldType, required this.controller});
 
-  final void Function(String value) onChange;
   final AuthTextFieldType textFieldType;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: onChange,
+      controller: controller,
       cursorColor: context.colorScheme.onSurface,
       obscureText: textFieldType == AuthTextFieldType.password,
       decoration: InputDecoration(
