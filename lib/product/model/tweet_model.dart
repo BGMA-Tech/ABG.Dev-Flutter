@@ -1,4 +1,5 @@
 import 'package:abgdev_flutter/product/model/comment_model.dart';
+import 'package:abgdev_flutter/product/model/user_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:vexana/vexana.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -10,7 +11,7 @@ class TweetModel extends INetworkModel<TweetModel> with EquatableMixin {
   final String? tweet;
   final String? createdAt;
   final int? likeCount;
-  final int? userId;
+  final UserModel? user;
   final List<CommentModel>? commentList;
 
   TweetModel({
@@ -18,7 +19,7 @@ class TweetModel extends INetworkModel<TweetModel> with EquatableMixin {
     this.tweet,
     this.createdAt,
     this.likeCount,
-    this.userId,
+    this.user,
     this.commentList,
   });
 
@@ -31,5 +32,5 @@ class TweetModel extends INetworkModel<TweetModel> with EquatableMixin {
   Map<String, dynamic>? toJson() => _$TweetModelToJson(this);
 
   @override
-  List<Object?> get props => [id, tweet, createdAt, likeCount, userId, commentList];
+  List<Object?> get props => [id, tweet, createdAt, likeCount, user, commentList];
 }

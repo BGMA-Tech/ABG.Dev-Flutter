@@ -1,15 +1,17 @@
 import 'package:vexana/vexana.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../product/model/user_model.dart';
 part 'tweet_request_model.g.dart';
 
 @JsonSerializable()
 class TweetRequestModel extends INetworkModel<TweetRequestModel> {
   final String? tweet;
-  final int? userId;
+  final UserModel? user;
 
   TweetRequestModel({
     this.tweet,
-    this.userId,
+    this.user,
   });
 
   @override
@@ -22,11 +24,11 @@ class TweetRequestModel extends INetworkModel<TweetRequestModel> {
 
   TweetRequestModel copyWith({
     String? tweet,
-    int? userId,
+    UserModel? userModel,
   }) {
     return TweetRequestModel(
       tweet: tweet ?? this.tweet,
-      userId: userId ?? this.userId,
+      user: userModel ?? user,
     );
   }
 }

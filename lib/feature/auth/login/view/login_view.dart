@@ -71,7 +71,7 @@ class LoginView extends StatelessWidget with NavigationMixin {
                   AuthRequestModel(
                     email: emailController.text.trim(),
                     password: passwordController.text.trim(),
-                    userName: '_',
+                    userName: '',
                   ),
                 );
             // await navigateToPageClear(NavigationConstants.login);

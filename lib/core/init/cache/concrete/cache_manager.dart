@@ -1,26 +1,27 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:abgdev_flutter/core/init/cache/abstract/cache_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:abgdev_flutter/core/init/cache/abstract/cache_service.dart';
+class CacheManager {
+  CacheManager._init() {
+    SharedPreferences.getInstance().then((value) {
+      _preferences = value;
+    });
+  }
+  static final CacheManager _instance = CacheManager._init();
 
-class CacheManager extends CacheService {
-  late final SharedPreferences _preferences;
-  CacheManager() {
-    loadPref();
+  SharedPreferences? _preferences;
+  static CacheManager get instance => _instance;
+  static Future prefrencesInit() async {
+    instance._preferences ??= await SharedPreferences.getInstance();
   }
 
-  @override
-  Future<void> loadPref() async {
-    _preferences = await SharedPreferences.getInstance();
+  Future<void> clearAll() async {
+    await _preferences!.clear();
   }
 
-  @override
-  int? getInt(CacheKeyEnum key) {
-    return _preferences.getInt(key.name) ?? 0;
+  Future<void> setIntValue(CacheKeyEnum key, int value) async {
+    await _preferences!.setInt(key.name, value);
   }
 
-  @override
-  void setInt(CacheKeyEnum key, int data) {
-    _preferences.setInt(key.name, data);
-  }
+  int getIntValue(CacheKeyEnum key) => _preferences!.getInt(key.name) ?? 0;
 }

@@ -13,9 +13,9 @@ class TweetManager extends TweetService {
   Future<SingleTweetResponseModel?> addTweet(TweetRequestModel model) async {
     final response = await networkManager.send<SingleTweetResponseModel, SingleTweetResponseModel>(
       _TweetPath.add.path,
-      data: model,
+      data: model.toJson(),
       parseModel: SingleTweetResponseModel(),
-      method: RequestType.GET,
+      method: RequestType.POST,
     );
     return response.data;
   }
@@ -26,7 +26,7 @@ class TweetManager extends TweetService {
       _TweetPath.deleteById.path,
       queryParameters: {'id': tweetId},
       parseModel: TweetResponseWithoutData(),
-      method: RequestType.GET,
+      method: RequestType.DELETE,
     );
     return response.data?.success ?? false;
   }
@@ -60,6 +60,7 @@ class TweetManager extends TweetService {
       parseModel: SingleTweetResponseModel(),
       method: RequestType.GET,
     );
+
     return response.data;
   }
 }

@@ -12,5 +12,13 @@ abstract class  LocaleKeys {
   static const login_password = 'login.password';
   static const login_loginButton = 'login.loginButton';
   static const login = 'login';
+  static const tweets_title = 'tweets.title';
+  static const tweets_writeTweet = 'tweets.writeTweet';
+  static const tweets = 'tweets';
+  static const comments_title = 'comments.title';
+  static const comments_tweetTitle = 'comments.tweetTitle';
+  static const comments_noCommentText = 'comments.noCommentText';
+  static const comments_writeComment = 'comments.writeComment';
+  static const comments = 'comments';
 
 }

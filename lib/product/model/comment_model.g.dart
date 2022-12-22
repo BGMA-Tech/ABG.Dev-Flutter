@@ -11,8 +11,9 @@ CommentModel _$CommentModelFromJson(Map<String, dynamic> json) => CommentModel(
       comment: json['comment'] as String?,
       createdAt: json['createdAt'] as String?,
       likeCount: json['likeCount'] as int?,
-      userId: json['userId'] as int?,
-      tweetId: json['tweetId'] as int?,
+      user: json['user'] == null
+          ? null
+          : UserModel.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CommentModelToJson(CommentModel instance) =>
@@ -21,6 +22,5 @@ Map<String, dynamic> _$CommentModelToJson(CommentModel instance) =>
       'comment': instance.comment,
       'createdAt': instance.createdAt,
       'likeCount': instance.likeCount,
-      'userId': instance.userId,
-      'tweetId': instance.tweetId,
+      'user': instance.user,
     };

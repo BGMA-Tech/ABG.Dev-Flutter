@@ -12,5 +12,16 @@
     "email" : "Email",
     "password": "Password",
     "loginButton": "Login"
+  },
+  "tweets":{
+    "title":"Tweets",
+    "writeTweet":"Write your tweet..."
+  },
+  "comments":{
+    "title":"Comments",
+    "tweetTitle":"Tweet",
+    "noCommentText":"There is no comment",
+    "writeComment":"Write your comment..."
   }
+
 }

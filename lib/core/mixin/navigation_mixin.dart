@@ -11,4 +11,12 @@ mixin NavigationMixin {
   Future<void> navigateToPageClear(String path, {Object? data}) async {
     await _navigationService.navigateToPageClear(path, data: data);
   }
+
+  void goBack() {
+    _navigationService.goBack();
+  }
+
+  bool canGoBack() {
+    return _navigationService.canGoBack();
+  }
 }

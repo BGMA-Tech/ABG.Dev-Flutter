@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:abgdev_flutter/feature/auth/service/abstract/auth_service.dart';
 import 'package:vexana/vexana.dart';
 
@@ -17,11 +15,7 @@ class AuthManager extends RegisterService {
       method: RequestType.POST,
       data: registerRequestModel,
     );
-    if (response.data == null) {
-      inspect(response);
-      final AuthResponseModel error = AuthResponseModel.fromJson(response.error?.response);
-      return error;
-    }
+
     return response.data;
   }
 
@@ -33,11 +27,7 @@ class AuthManager extends RegisterService {
       method: RequestType.POST,
       data: registerRequestModel,
     );
-    if (response.data == null) {
-      inspect(response);
-      final AuthResponseModel error = AuthResponseModel.fromJson(response.error?.response);
-      return error;
-    }
+
     return response.data;
   }
 }

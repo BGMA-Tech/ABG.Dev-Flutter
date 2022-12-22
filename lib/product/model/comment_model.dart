@@ -1,3 +1,4 @@
+import 'package:abgdev_flutter/product/model/user_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:vexana/vexana.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -9,16 +10,14 @@ class CommentModel extends INetworkModel<CommentModel> with EquatableMixin {
   final String? comment;
   final String? createdAt;
   final int? likeCount;
-  final int? userId;
-  final int? tweetId;
+  final UserModel? user;
 
   CommentModel({
     this.id,
     this.comment,
     this.createdAt,
     this.likeCount,
-    this.userId,
-    this.tweetId,
+    this.user,
   });
 
   @override
@@ -30,5 +29,5 @@ class CommentModel extends INetworkModel<CommentModel> with EquatableMixin {
   Map<String, dynamic>? toJson() => _$CommentModelToJson(this);
 
   @override
-  List<Object?> get props => [id, comment, createdAt, likeCount, userId, tweetId];
+  List<Object?> get props => [id, comment, createdAt, likeCount];
 }

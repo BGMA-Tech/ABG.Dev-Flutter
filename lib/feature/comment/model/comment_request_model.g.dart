@@ -1,21 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tweet_request_model.dart';
+part of 'comment_request_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TweetRequestModel _$TweetRequestModelFromJson(Map<String, dynamic> json) =>
-    TweetRequestModel(
-      tweet: json['tweet'] as String?,
+CommentRequestModel _$CommentRequestModelFromJson(Map<String, dynamic> json) =>
+    CommentRequestModel(
+      comment: json['comment'] as String?,
       user: json['user'] == null
           ? null
           : UserModel.fromJson(json['user'] as Map<String, dynamic>),
+      tweetId: json['tweetId'] as int?,
     );
 
-Map<String, dynamic> _$TweetRequestModelToJson(TweetRequestModel instance) =>
+Map<String, dynamic> _$CommentRequestModelToJson(
+        CommentRequestModel instance) =>
     <String, dynamic>{
-      'tweet': instance.tweet,
+      'comment': instance.comment,
       'user': instance.user,
+      'tweetId': instance.tweetId,
     };

@@ -19,4 +19,14 @@ class NavigationManager extends INavigationService {
     await navigatorKey.currentState!
         .pushNamedAndRemoveUntil(path, (Route<dynamic> route) => false, arguments: data ?? '');
   }
+
+  @override
+  void goBack() {
+    navigatorKey.currentState!.pop();
+  }
+
+  @override
+  bool canGoBack() {
+    return navigatorKey.currentState!.canPop();
+  }
 }

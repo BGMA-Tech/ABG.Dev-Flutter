@@ -1,7 +1,9 @@
 import 'package:abgdev_flutter/core/constants/navigation_constants.dart';
 import 'package:abgdev_flutter/feature/auth/login/view/login_view.dart';
 import 'package:abgdev_flutter/feature/auth/register/view/register.view.dart';
+import 'package:abgdev_flutter/feature/comment/view/comment_view.dart';
 import 'package:abgdev_flutter/feature/home/view/home_view.dart';
+import 'package:abgdev_flutter/product/model/tweet_model.dart';
 import 'package:flutter/material.dart';
 
 class NavigationRoute {
@@ -17,6 +19,11 @@ class NavigationRoute {
         return normalNavigate(LoginView());
       case NavigationConstants.home:
         return normalNavigate(const HomeView());
+      case NavigationConstants.comment:
+        if (args.arguments is TweetModel?) {
+          return normalNavigate(CommentView(tweetModel: args.arguments as TweetModel?));
+        }
+        return normalNavigate(const Scaffold());
       default:
         return normalNavigate(const Scaffold());
     }
